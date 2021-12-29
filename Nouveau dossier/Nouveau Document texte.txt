@@ -1,0 +1,73 @@
+En C++, les déclarations de variables suivent une syntaxe standardisée à laquelle il est
+vivement conseillé de se conformer :
+	• m_i??? pour une nouvelle variable de type entier
+	• m_d??? pour une nouvelle variable de type double
+	• p??? pour une nouvelle variable de type pointeur
+	• C??? pour une nouvelle classe
+
+
+
+%Afficher un messsageBox:
+	AfxMessageBox(str); !!Telque str une variable de type CString
+	AfxMessageBox (( LPCTSTR ) str , MB_OK , NULL ) ;
+
+	
+%Concaténation
+	string= _T("CB2: ")+valeur;
+	
+
+	
+%Afficher dans la sortie(Debug):
+	!!Méthode 1
+	TRACE("\nThis is a TRACE statement %d \n", idxSelected);
+	!!Méthode 2
+	#include <Windows.h>
+	#include <iostream>
+	#include <sstream>
+
+	#define DBOUT( s )            \
+	{                             \
+	   std::wostringstream os_;    \
+	   os_ << s;                   \
+	   OutputDebugStringW( os_.str().c_str() );  \
+	}
+	
+	DBOUT("\nThe value of x is " << idxSelected);
+	
+	
+	
+%dessinner dans l'interface: DOC in view
+	//en OnDraw
+	pDC -> TextOutW(50,50,_T("text"));
+	
+	
+	
+%si on veut ajouter un rectangle/elipse ... dans la vue
+	//En onDraw
+	switch (v_shapeToDraw)
+	{
+	case DrawShape::Circle:
+		pDc -> Ellipse(CRect{topLeftXY,buttomRightXY,buttomRightXY}); //aussi pour Rectangle
+	break;
+	
+	}
+	
+	// En fonction qui dessine
+	v_shapeToDraw = DrawShape::Circle;
+	Invalidate();
+	UpdateWindow();
+	
+%Faire un zoom 
+	m_zoomIn = !m_zoomIn;
+	Invalidate();
+	UpdateWindow();
+	
+%enable bouton
+	pCmdUI->Enable(TRUE);
+
+%Check bouton
+	pCmdUI->SetCheck(TRUE);
+	
+	
+%Drawing smothly
+	https://www.youtube.com/watch?v=_Xr-TyJsbHU&list=PLbbMKXzfxUBRrAdO-fc3FSdaHihb7XHqI&index=9
